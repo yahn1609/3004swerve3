@@ -5,12 +5,12 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakeSubSystem extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
 
     private static TalonFX shooterIntakeMechanism;
     private static TalonFX slaveShooterIntakeMechanism;
 
-    public IntakeSubSystem() {}
+    public IntakeSubsystem() {}
     
     @Override
     public void periodic() {}

@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.IntakeSubSystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeMechCmd extends Command {
     
-    private final IntakeSubSystem intakeSubSystem;
+    private final IntakeSubsystem intakeSubSystem;
     private final boolean intakeINStart;
     
-    public IntakeMechCmd(IntakeSubSystem intakeSubSystem, boolean intakeINStart) {
+    public IntakeMechCmd(IntakeSubsystem intakeSubSystem, boolean intakeINStart) {
         this.intakeSubSystem = intakeSubSystem; // passes intakesub class through IntakeCmd constructor (for when it's called in robot container)
         this.intakeINStart = intakeINStart;
         addRequirements(intakeSubSystem);

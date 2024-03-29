@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.RaiseSubSystem;
+import frc.robot.subsystems.ClimberSubystem;
 
 public class RaiseMechCmd extends Command {
 
-    private final RaiseSubSystem raiseSubSystem;
+    private final ClimberSubystem raiseSubSystem;
 
-    public RaiseMechCmd(RaiseSubSystem raiseSubSystem) {
+    public RaiseMechCmd(ClimberSubystem raiseSubSystem) {
         this.raiseSubSystem = raiseSubSystem; // passes Mechanism class through RaiseCmd's constructor (for when it's called in robot container)
         addRequirements(raiseSubSystem);
     }
