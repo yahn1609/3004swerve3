@@ -7,8 +7,8 @@ import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private static TalonFX shooterIntakeMechanism;
-    private static TalonFX slaveShooterIntakeMechanism;
+    public static TalonFX intakeMechanism;
+    public static TalonFX slaveIntakeMechanism;
 
     public IntakeSubsystem() {}
     
@@ -17,17 +17,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void intakePosition (boolean intakeINStart) {
         if (intakeINStart) {
-            // intake in logic
-            shooterIntakeMechanism.set(Constants.intakeIN);
-            slaveShooterIntakeMechanism.set(Constants.intakeIN);
-        } else {
-            shooterIntakeMechanism.set(Constants.intakeOUT);
-            slaveShooterIntakeMechanism.set(Constants.intakeOUT);
-        }
+            intakeMechanism.set(Constants.intakeIN);
+            slaveIntakeMechanism.set(Constants.intakeIN);
+        } 
     }
 
-    public void intakeRest (boolean rest) {
-        shooterIntakeMechanism.set(0);
-        slaveShooterIntakeMechanism.set(0);
+    public void intakeRest (boolean intakeRest) {
+        intakeMechanism.set(0);
+        slaveIntakeMechanism.set(0);
     }
 }

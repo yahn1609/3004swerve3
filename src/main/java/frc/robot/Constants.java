@@ -145,8 +145,12 @@ public final class Constants {
     }
 
     /* Mechanism Constants */
-    public static double intakeIN = 1;
-    public static double intakeOUT = -1;
-    
-    // raise mechs constants next .... 
+    public static final double intakeIN = 1;
+    public static final double intakeOUT = -1;
+    public static final double climberRaiseSpeed = .3;
+    public static final double climberLowerSpeed = -.3;
+    public static final double pivotSpeed = .3;
+    public static final double pivotReverseSpeed = -.3;
+    public static final double shooterMotorSpeedLeft = 1;
+    public static final double shooterMotorSpeedRight = 1;
 }

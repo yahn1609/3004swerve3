@@ -19,7 +19,7 @@ public class RobotContainer {
 
     /*
      *                                                              [Button Configuration]
-     *   /***********************************************************************************************************************************************/
+     *  /***********************************************************************************************************************************************/
         //                                                                  /\_/\                                                                      //
         //                                                                 ( o.o )                                                                     //
         //                                                                  > ^ <                                                                      //
@@ -27,11 +27,20 @@ public class RobotContainer {
         /********************************************************************************************************************************************** /
         
         [BUTTONS]
-            - RESET GYRO = Y
-            - RAISE ELEVATOR = RIGHT BUMPER
-            - LOWER ELEVATOR = LEFT BUMPER
-            - INTAKE IN = X
-            - INTAKE OUT = B
+
+                 [Gyro]
+                    - RESET GYRO = Y
+                        
+                 [Intake]
+                    - INTAKE IN = X
+                    - AMP SHOOTER / INTAKE OUT = A
+
+                 [Climber]
+                    - RAISE CLIMBER / PIVOT MOTOR = UP D-PAD
+                    - LOWER CLIMBER / PIVOT MOTOR = DOWN D-PAD
+
+                [Shooter]
+                    - 
 
         [DRIVE] 
             - TRANSLATION AXIS = LEFT Y STICK
@@ -40,7 +49,7 @@ public class RobotContainer {
     */
 
     /* Controllers */
-    private final XboxController driver = new XboxController(0);
+    private final XboxController driverController = new XboxController(0);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -48,15 +57,18 @@ public class RobotContainer {
     private final int rotationAxis = XboxController.Axis.kRightX.value;
 
     /* Driver Buttons */
-    private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value); // resets gyro position
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value); // resets gyro position
+    private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
     /* Operator Buttons */
-    private final JoystickButton raiseMechUP = new JoystickButton(driver, XboxController.Button.kRightBumper.value); // raises arm mechanism
-    private final JoystickButton raiseMechDOWN = new JoystickButton(driver, XboxController.Button.kLeftBumper.value); // raises arm mechanism
-    private final JoystickButton intakeIN = new JoystickButton(driver, XboxController.Button.kX.value); // intakes 
-    private final JoystickButton intakeOUT = new JoystickButton(driver, XboxController.Button.kB.value);
-   
+
+    /** Intake **/
+    private final JoystickButton intakeIN = new JoystickButton(driverController, XboxController.Button.kX.value);  
+    private final JoystickButton intakeOUT = new JoystickButton(driverController, XboxController.Button.kA.value);
+    
+    private final JoystickButton raise = new JoystickButton(driverController,  driverController.getPOV(0)); // d-pad up
+    private final JoystickButton down = new JoystickButton(driverController,  driverController.getPOV(180)); // d-pad down
+
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final IntakeSubsystem m_IntakeSubSystem = new IntakeSubsystem();
@@ -64,11 +76,11 @@ public class RobotContainer {
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         s_Swerve.setDefaultCommand(
-            new TeleopSwerve(
+            new TeleopSwerve (
                 s_Swerve, 
-                () -> -driver.getRawAxis(translationAxis), 
-                () -> -driver.getRawAxis(strafeAxis), 
-                () -> -driver.getRawAxis(rotationAxis), 
+                () -> -driverController.getRawAxis(translationAxis), 
+                () -> -driverController.getRawAxis(strafeAxis), 
+                () -> -driverController.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
             )
         );
@@ -88,7 +100,6 @@ public class RobotContainer {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroHeading())); // resets gyro
         intakeIN.onTrue(new InstantCommand(() -> m_IntakeSubSystem.intakePosition(true))); // intake in
-        intakeOUT.onTrue(new InstantCommand(() ->  m_IntakeSubSystem.intakePosition(false))); // intake out
 
         // raise / elevator climber mechs buttons next
 
