@@ -34,4 +34,8 @@ public class ShooterSubsystem extends SubsystemBase {
         }
     }
 
+    public void restShooter(boolean restShooter) {
+        
+    }
+
 }
