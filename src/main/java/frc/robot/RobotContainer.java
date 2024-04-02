@@ -40,8 +40,8 @@ public class RobotContainer {
                     - RAISE CLIMBER / PIVOT MOTOR = UP D-PAD
                     - LOWER CLIMBER / PIVOT MOTOR = DOWN D-PAD
 
-                [Shooter]
-                    - 
+                [Shooter 
+                    - SHOOT = RIGHT TRIGGER
 
         [DRIVE] 
             - TRANSLATION AXIS = LEFT Y STICK
@@ -50,7 +50,7 @@ public class RobotContainer {
     */
 
     /* Controllers */
-        private final XboxController driverController = new XboxController(0);
+        private final XboxController driverController = new XboxController(Constants.controllerID);
 
     /* Drive Controls */
         private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -70,6 +70,7 @@ public class RobotContainer {
         /* Climber */
         private final JoystickButton raise = new JoystickButton(driverController,  driverController.getPOV(0)); // d-pad up
         private final JoystickButton down = new JoystickButton(driverController,  driverController.getPOV(180)); // d-pad down
+        
         /* Shooter */
         private final Trigger shooterTrig = new Trigger(() -> (driverController.getRawAxis(XboxController.Axis.kLeftTrigger.value) > 0.7));
     
@@ -120,15 +121,18 @@ public class RobotContainer {
             intakeOUT.onTrue (
                 new InstantCommand(() -> m_ShooterSubsystem.spitShooterIntake(true))
             ); 
+            intakeOUT.onFalse(
+                new InstantCommand(() -> m_ShooterSubsystem.restShooter(true))
+            );
 
             /* Climber: If D-Pad Up is pressed (onTrue): raisePositionUP executes, If not pressed (onFalse) rest climber executes*/
             raise.onTrue(new InstantCommand(() -> m_ClimberSubystem.raisePositionUP(true))); // raises climber
             raise.onFalse(new InstantCommand(() -> m_ClimberSubystem.restClimber(true)));
             /* Climber: If D-Pad Down is pressed (onTrue): raisedPositionUP as false which lowers it down */
-            down.onTrue(new InstantCommand(() -> m_ClimberSubystem.raisePositionUP(false))); // lowers climber
+            down.onTrue(new InstantCommand(() -> m_ClimberSubystem.raisePositionUP(true))); // lowers climber
             down.onFalse(new InstantCommand(() -> m_ClimberSubystem.restClimber(true)));
 
-            /* Shooter:  */
+            /* Shooter: If Right-Trigger is pressed (onTrue): executes shootTarget, if is not pressed (onFalse) restShooter executes */
             shooterTrig.onTrue(new InstantCommand(() -> m_ShooterSubsystem.shootTarget(true)));
             shooterTrig.onFalse(new InstantCommand(() -> m_ShooterSubsystem.restShooter(true)));
         }
@@ -138,8 +142,8 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-        public Command getAutonomousCommand() {
-            // An ExampleCommand will run in autonomous
-            return new exampleAuto(s_Swerve);
-        }
+            public Command getAutonomousCommand() {
+                // An ExampleCommand will run in autonomous
+                return new exampleAuto(s_Swerve);
+            }
 }

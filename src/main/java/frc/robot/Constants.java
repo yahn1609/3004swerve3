@@ -147,10 +147,38 @@ public final class Constants {
     /* Mechanism Constants */
     public static final double intakeIN = 1;
     public static final double intakeOUT = -1;
+
     public static final double climberRaiseSpeed = .3;
     public static final double climberLowerSpeed = -.3;
+
     public static final double pivotSpeed = .3;
     public static final double pivotReverseSpeed = -.3;
+
     public static final double shooterMotorSpeedLeft = 1;
     public static final double shooterMotorSpeedRight = 1;
+
+    /*
+     *                          [DEVICE CAN ID HOLDERS]
+     *  
+     *  [CONTROLLER]
+     *      - Xbox Controller = 0
+     * 
+     *  [INTAKE]
+     *      - TalonFX intakeMechanism = 1
+     *      - TalonFX slaveIntakeMechanism = 2
+     *
+     *  [CLIMBER]
+     *      - TalonFX pivotMotor = 3
+     *
+     *  [SHOOTER]
+     *      - TalonFX shooterIntakeMechanismLeft = 4 
+     *      - TalonFX shooterIntakeMechanismRight = 5
+     */
+
+     public static final int controllerID = 0; // xbox controller 
+     public static final int intakeMechanismID = 1;
+     public static final int slaveIntakeMechanismID = 2;
+     public static final int pivotMotorID = 3;
+     public static final int shooterIntakeMechanismLeftID = 4;
+     public static final int shooterIntakeMechanismRightID = 5;
 }

@@ -6,7 +6,7 @@ import frc.robot.Constants;
 
 public class ClimberSubystem extends SubsystemBase {
 
-    private static TalonFX pivotMotor;
+    private static TalonFX pivotMotor = new TalonFX(Constants.pivotMotorID);
 
     public ClimberSubystem() {}
 

@@ -7,18 +7,19 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-    private static TalonFX shooterIntakeMechanismLeft;
-    private static TalonFX slaveShooterIntakeMechanismLeft;
-    private static TalonFX shooterIntakeMechanismRight;
-    private static TalonFX slaveShooterIntakeMechanismRight;
-
-    private static TalonFX intakeHelperMotor = IntakeSubsystem.intakeMechanism;
-    private static TalonFX intakeHelperMotorSlave = IntakeSubsystem.slaveIntakeMechanism;
+    /* Note to Reakab: If you need to id these motor controllers follow the example below */
+    /*private TalonFX motorExample = new TalonFX(0);*/
+    
+    private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    private TalonFX shooterIntakeMechanismLeft = new TalonFX(Constants.shooterIntakeMechanismLeftID); 
+    private TalonFX shooterIntakeMechanismRight = new TalonFX(Constants.shooterIntakeMechanismRightID);
+    private TalonFX intakeHelperMotor = intakeSubsystem.intakeMechanism;
+    private TalonFX intakeHelperMotorSlave = intakeSubsystem.slaveIntakeMechanism;
     
     @Override
     public void periodic() {}
 
-    public void shootTarget (boolean starShot) {
+    public void shootTarget(boolean starShot) {
         if (starShot) {
             shooterIntakeMechanismLeft.set(Constants.shooterMotorSpeedLeft);
             shooterIntakeMechanismRight.set(Constants.shooterMotorSpeedRight);
@@ -27,7 +28,7 @@ public class ShooterSubsystem extends SubsystemBase {
         } 
     }
 
-    public void spitShooterIntake (boolean spitFire) {
+    public void spitShooterIntake(boolean spitFire) {
         if (spitFire) {
             intakeHelperMotor.set(Constants.intakeOUT);
             intakeHelperMotorSlave.set(Constants.intakeOUT);
@@ -35,7 +36,10 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     public void restShooter(boolean restShooter) {
-        
+            shooterIntakeMechanismLeft.set(0);
+            shooterIntakeMechanismRight.set(0);
+            intakeHelperMotor.set(0);
+            intakeHelperMotorSlave.set(0);
     }
 
 }
