@@ -85,6 +85,7 @@ public final class Constants {
         /* Neutral Modes */
         public static final NeutralModeValue angleNeutralMode = NeutralModeValue.Coast;
         public static final NeutralModeValue driveNeutralMode = NeutralModeValue.Brake;
+        public static final String kCANbus = "Canivorebus";
 
         /* Module Specific Constants */
         /* Front Left Module - Module 0 */
