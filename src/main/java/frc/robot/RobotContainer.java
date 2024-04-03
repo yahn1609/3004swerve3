@@ -35,7 +35,7 @@ public class RobotContainer {
                  [Intake]
                     - INTAKE IN = X
                     - AMP SHOOTER / INTAKE OUT = A
-                    - INTAKE ARM MOVEMENT = B
+                    - INTAKE ARM MOVEMENT = RightBumper
 
                  [Climber]
                     - RAISE CLIMBER / PIVOT MOTOR = UP D-PAD
@@ -67,7 +67,8 @@ public class RobotContainer {
         /* Intake */
         private final JoystickButton intakeIN = new JoystickButton(driverController, XboxController.Button.kX.value);  
         private final JoystickButton intakeOUT = new JoystickButton(driverController, XboxController.Button.kA.value);
-    
+        private final JoystickButton intakeARM = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+
         /* Climber */
         private final JoystickButton raise = new JoystickButton(driverController,  driverController.getPOV(0)); // d-pad up
         private final JoystickButton down = new JoystickButton(driverController,  driverController.getPOV(180)); // d-pad down
@@ -123,6 +124,15 @@ public class RobotContainer {
                 new InstantCommand(() -> m_IntakeSubSystem.spitShooterIntake(true))
             ); 
             intakeOUT.onFalse(
+                new InstantCommand(() -> m_IntakeSubSystem.intakeRest(true))
+            );
+            
+            /* IntakeARM: If Right Bumper is pressed (onTrue): Arm executes, If is not pressed (onFalse) rest intake executes */
+
+            intakeARM.onTrue (
+                new InstantCommand(() -> m_IntakeSubSystem.intakeArmPosition(true))
+            ); 
+            intakeARM.onFalse(
                 new InstantCommand(() -> m_IntakeSubSystem.intakeRest(true))
             );
 
