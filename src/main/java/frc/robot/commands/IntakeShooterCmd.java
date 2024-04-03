@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeShooterCmd extends Command {
-    private final ShooterSubsystem shooterSubsystem;
+    private final IntakeSubsystem intakeSubsystem;
     private final boolean spitFire;
 
-    public IntakeShooterCmd(ShooterSubsystem shooterSubsystem, boolean spitFire) {
-            this.shooterSubsystem = shooterSubsystem;
+    public IntakeShooterCmd(IntakeSubsystem intakeSubsystem, boolean spitFire) {
+            this.intakeSubsystem = intakeSubsystem;
             this.spitFire = spitFire;
     }
 
@@ -19,7 +19,7 @@ public class IntakeShooterCmd extends Command {
 
     @Override
     public void execute() {
-        shooterSubsystem.spitShooterIntake(spitFire); // spits out ring from intake
+        intakeSubsystem.spitShooterIntake(spitFire); // spits out ring from intake
     }   
 
     @Override

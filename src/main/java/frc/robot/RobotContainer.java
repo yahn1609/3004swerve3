@@ -35,12 +35,13 @@ public class RobotContainer {
                  [Intake]
                     - INTAKE IN = X
                     - AMP SHOOTER / INTAKE OUT = A
+                    - INTAKE ARM MOVEMENT = B
 
                  [Climber]
                     - RAISE CLIMBER / PIVOT MOTOR = UP D-PAD
                     - LOWER CLIMBER / PIVOT MOTOR = DOWN D-PAD
 
-                [Shooter 
+                [Shooter] 
                     - SHOOT = RIGHT TRIGGER
 
         [DRIVE] 
@@ -119,10 +120,10 @@ public class RobotContainer {
 
             /* Intake Amp Shooter: If A is pressed (onTrue): SpitShooterAmp executes, If is not pressed (onFalse) rest intake executes */
             intakeOUT.onTrue (
-                new InstantCommand(() -> m_ShooterSubsystem.spitShooterIntake(true))
+                new InstantCommand(() -> m_IntakeSubSystem.spitShooterIntake(true))
             ); 
             intakeOUT.onFalse(
-                new InstantCommand(() -> m_ShooterSubsystem.restShooter(true))
+                new InstantCommand(() -> m_IntakeSubSystem.intakeRest(true))
             );
 
             /* Climber: If D-Pad Up is pressed (onTrue): raisePositionUP executes, If not pressed (onFalse) rest climber executes*/

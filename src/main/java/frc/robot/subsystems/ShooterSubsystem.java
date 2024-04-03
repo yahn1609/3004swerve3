@@ -14,7 +14,6 @@ public class ShooterSubsystem extends SubsystemBase {
     private TalonFX shooterIntakeMechanismLeft = new TalonFX(Constants.shooterIntakeMechanismLeftID); 
     private TalonFX shooterIntakeMechanismRight = new TalonFX(Constants.shooterIntakeMechanismRightID);
     private TalonFX intakeHelperMotor = intakeSubsystem.intakeMechanism;
-    private TalonFX intakeHelperMotorSlave = intakeSubsystem.slaveIntakeMechanism;
     
     @Override
     public void periodic() {}
@@ -24,22 +23,13 @@ public class ShooterSubsystem extends SubsystemBase {
             shooterIntakeMechanismLeft.set(Constants.shooterMotorSpeedLeft);
             shooterIntakeMechanismRight.set(Constants.shooterMotorSpeedRight);
             intakeHelperMotor.set(Constants.shooterMotorSpeedLeft);
-            intakeHelperMotorSlave.set(Constants.shooterMotorSpeedRight);
         } 
-    }
-
-    public void spitShooterIntake(boolean spitFire) {
-        if (spitFire) {
-            intakeHelperMotor.set(Constants.intakeOUT);
-            intakeHelperMotorSlave.set(Constants.intakeOUT);
-        }
     }
 
     public void restShooter(boolean restShooter) {
             shooterIntakeMechanismLeft.set(0);
             shooterIntakeMechanismRight.set(0);
             intakeHelperMotor.set(0);
-            intakeHelperMotorSlave.set(0);
     }
 
 }
