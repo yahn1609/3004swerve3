@@ -147,7 +147,8 @@ public final class Constants {
     /* Mechanism Constants */
     public static final double intakeIN = 1;
     public static final double intakeOUT = -1;
-    public static final double intakeARMSPEED = .5;
+    public static final double intakeARMSPEEDFORWARD = .5;
+    public static final double intakeARMSPEEDRETRACT = -.5;
 
     public static final double climberRaiseSpeed = .3;
     public static final double climberLowerSpeed = -.3;

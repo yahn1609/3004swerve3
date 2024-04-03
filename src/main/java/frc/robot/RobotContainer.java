@@ -35,7 +35,8 @@ public class RobotContainer {
                  [Intake]
                     - INTAKE IN = X
                     - AMP SHOOTER / INTAKE OUT = A
-                    - INTAKE ARM MOVEMENT = RightBumper
+                    - INTAKE ARM MOVEMENT FORWARD = RightBumper
+                    - INTAKE ARM MOVEMENT RETRACT = LeftBumper
 
                  [Climber]
                     - RAISE CLIMBER / PIVOT MOTOR = UP D-PAD
@@ -60,14 +61,15 @@ public class RobotContainer {
 
     /* Driver Buttons */
         private final JoystickButton zeroGyro = new JoystickButton(driverController, XboxController.Button.kY.value); // resets gyro position
-        private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
+        private final JoystickButton robotCentric = new JoystickButton(driverController, XboxController.Button.kBack.value);
 
     /* [Operator Buttons Below] */
 
         /* Intake */
         private final JoystickButton intakeIN = new JoystickButton(driverController, XboxController.Button.kX.value);  
         private final JoystickButton intakeOUT = new JoystickButton(driverController, XboxController.Button.kA.value);
-        private final JoystickButton intakeARM = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+        private final JoystickButton intakeARMFORWARD = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+        private final JoystickButton intakeARMRETRACT = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
 
         /* Climber */
         private final JoystickButton raise = new JoystickButton(driverController,  driverController.getPOV(0)); // d-pad up
@@ -129,10 +131,18 @@ public class RobotContainer {
             
             /* IntakeARM: If Right Bumper is pressed (onTrue): Arm executes, If is not pressed (onFalse) rest intake executes */
 
-            intakeARM.onTrue (
-                new InstantCommand(() -> m_IntakeSubSystem.intakeArmPosition(true))
+            intakeARMFORWARD.onTrue (
+                new InstantCommand(() -> m_IntakeSubSystem.intakeArmPositionForward(true))
             ); 
-            intakeARM.onFalse(
+            intakeARMFORWARD.onFalse(
+                new InstantCommand(() -> m_IntakeSubSystem.intakeRest(true))
+            );
+
+            intakeARMRETRACT.onTrue(
+                new InstantCommand(() -> m_IntakeSubSystem.intakeArmPositionRetract(true))
+            );
+            
+            intakeARMRETRACT.onFalse(
                 new InstantCommand(() -> m_IntakeSubSystem.intakeRest(true))
             );
 
