@@ -22,9 +22,15 @@ public class IntakeSubsystem extends SubsystemBase {
         } 
     }
 
-    public void intakeArmPosition (boolean intakeARMSTART) {
+    public void intakeArmPositionForward (boolean intakeARMSTART) {
         if (intakeARMSTART) {
-            intakeArmMechanism.set(Constants.intakeARMSPEED);
+            intakeArmMechanism.set(Constants.intakeARMSPEEDFORWARD);
+        }
+    }
+
+    public void intakeArmPositionRetract (boolean intakeARMSTART) {
+        if (intakeARMSTART) {
+            intakeArmMechanism.set(Constants.intakeARMSPEEDRETRACT);
         }
     }
 

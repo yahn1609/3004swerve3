@@ -10,10 +10,8 @@ public class ShooterSubsystem extends SubsystemBase {
     /* Note to Reakab: If you need to id these motor controllers follow the example below */
     /*private TalonFX motorExample = new TalonFX(0);*/
     
-    private IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private TalonFX shooterIntakeMechanismLeft = new TalonFX(Constants.shooterIntakeMechanismLeftID); 
     private TalonFX shooterIntakeMechanismRight = new TalonFX(Constants.shooterIntakeMechanismRightID);
-    private TalonFX intakeHelperMotor = intakeSubsystem.intakeMechanism;
     
     @Override
     public void periodic() {}
@@ -22,14 +20,12 @@ public class ShooterSubsystem extends SubsystemBase {
         if (starShot) {
             shooterIntakeMechanismLeft.set(Constants.shooterMotorSpeedLeft);
             shooterIntakeMechanismRight.set(Constants.shooterMotorSpeedRight);
-            intakeHelperMotor.set(Constants.shooterMotorSpeedLeft);
         } 
     }
 
     public void restShooter(boolean restShooter) {
             shooterIntakeMechanismLeft.set(0);
             shooterIntakeMechanismRight.set(0);
-            intakeHelperMotor.set(0);
     }
 
 }
