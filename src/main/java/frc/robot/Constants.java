@@ -182,6 +182,6 @@ public final class Constants {
      public static final int intakeArmMechanismID = 2;
      //public static final int followIntakeMechanismID = 15;
      public static final int pivotMotorID = 3;
-     public static final int shooterIntakeMechanismLeftID = 4;
-     public static final int shooterIntakeMechanismRightID = 5;
+     public static final int shooterIntakeMechanismLeftID = 21;
+     public static final int shooterIntakeMechanismRightID = 22;
 }

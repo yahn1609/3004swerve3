@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -22,7 +21,7 @@ public class ShooterSubsystem extends SubsystemBase {
             shooterIntakeMechanismRight.set(Constants.shooterMotorSpeedRight);
         } 
     }
-
+    
     public void restShooter(boolean restShooter) {
             shooterIntakeMechanismLeft.set(0);
             shooterIntakeMechanismRight.set(0);
